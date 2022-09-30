@@ -35,9 +35,9 @@ public class CategoriaResource
  
  @PostMapping("/save")
  public Categoria criar(@Valid @RequestBody Categoria categoria) throws Exception {
-	 if(categoria.getNome() ==null) {
-		 throw new Exception("Mensagem invalida");
-	 }
+	//  if(categoria.getNome() ==null) {
+	// 	 throw new Exception("Mensagem invalida");
+	//  }
 	 categoria = categoriaRepository.save(categoria);
 //	 URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}").
 //	    buildAndExpand(categoriaSalva.getCodigo()).toUri();

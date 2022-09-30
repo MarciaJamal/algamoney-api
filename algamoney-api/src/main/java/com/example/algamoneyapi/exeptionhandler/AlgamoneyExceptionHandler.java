@@ -20,16 +20,17 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class AlgamoneyExceptionHandler  {
 	
 //	@Autowired
 //	private MessageSource messageSource;
 	@ExceptionHandler(value= {
-			RuntimeException.class}
+			MethodArgumentNotValidException.class}
 			)
 	public ErrorsApi handleHttpMessageRedable()
 	{
