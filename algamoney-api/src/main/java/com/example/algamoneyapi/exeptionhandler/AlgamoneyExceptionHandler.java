@@ -32,12 +32,12 @@ public class AlgamoneyExceptionHandler  {
 	@ExceptionHandler(value= {
 			MethodArgumentNotValidException.class}
 			)
-	public ErrorsApi handleHttpMessageRedable()
+	public ResponseEntity<ErrorsApi> handleHttpMessageRedable()
 	{
-		String mensagemUsuario = "testedev";
+		String mensagemUsuario = "Erro";
 		String mensagemDesenvolvedor = "teste";
 //		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-		return new ErrorsApi(HttpStatus.BAD_REQUEST,mensagemUsuario,mensagemDesenvolvedor);
+		return new ResponseEntity<>(new ErrorsApi(HttpStatus.BAD_REQUEST,mensagemUsuario,mensagemDesenvolvedor),HttpStatus.BAD_REQUEST);
 	}
 	
 //	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
