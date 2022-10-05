@@ -7,5 +7,7 @@ import com.example.algamoneyapi.model.Pessoa;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
    
 	public Pessoa findByCodigo(Long codigo);
+
+	public Pessoa delete(Long codigo);
 	
 }
