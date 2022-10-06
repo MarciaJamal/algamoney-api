@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.algamoneyapi.model.Endereco;
 
-public class PersonRequest {
+public class PersonRequest { 
     @NotNull
 	private String nome;
 	private Endereco endereco;
