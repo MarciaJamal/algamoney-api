@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.algamoneyapi.dto.PersonRequest;
 import com.example.algamoneyapi.model.Pessoa;
 import com.example.algamoneyapi.repository.PessoaRepository;
 import java.util.List;
 import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 
@@ -28,7 +32,9 @@ public class PessoaResource {
  }
 	 
 	@PostMapping("/save")
-	public Pessoa criar(@Valid @RequestBody Pessoa pessoa) throws Exception {
+	public Pessoa criar(@Valid @RequestBody PersonRequest personRequest) throws Exception {
+		Pessoa pessoa = new Pessoa();
+		BeanUtils.copyProperties(personRequest, pessoa);
 		pessoa = pessoaRepository.save(pessoa);
            return pessoa;
 	 }
