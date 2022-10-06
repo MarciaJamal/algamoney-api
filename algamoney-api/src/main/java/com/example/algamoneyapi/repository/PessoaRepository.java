@@ -8,6 +8,6 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
    
 	public Pessoa findByCodigo(Long codigo);
 
-	public Pessoa delete(Long codigo);
+	public void deleteByCodigo(Long codigo);
 	
 }
