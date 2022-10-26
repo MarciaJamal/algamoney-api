@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name= "pessoa")
 public class Pessoa {
@@ -23,7 +27,7 @@ public class Pessoa {
 	private Endereco endereco;
 	
 	@NotNull
-	private Boolean activo;
+	private boolean activo;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -53,13 +57,42 @@ public class Pessoa {
 		return activo;
 	}
 
-	public void setActivo(Boolean activo) {
+	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	@JsonIgnore
+	@Transient
+	public boolean isInactivo()
+	{
+		return !this.activo;
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	
-	
-	
+	}
 	
 
 }

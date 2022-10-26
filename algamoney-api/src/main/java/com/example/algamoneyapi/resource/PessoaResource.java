@@ -57,11 +57,23 @@ public class PessoaResource {
 		 return pessoa != null ? ResponseEntity.ok(pessoa): ResponseEntity.notFound().build();
 	 }
 	 
-	 @DeleteMapping
+	 @DeleteMapping("/{codigo}")
 	 @ResponseStatus(HttpStatus.NO_CONTENT)
-	 public void remover(@PathVariable Long codigo)
+	 public ResponseEntity<Boolean> remover(@PathVariable Long codigo)
 	 {
-		  pessoaRepository.deleteByCodigo(codigo);
+		 try {
+		       Pessoa pessoa = pessoaRepository.findByCodigo(codigo);
+		       pessoaRepository.delete(pessoa);
+		       return ResponseEntity.ok(true);
+		 }
+		 catch(Exception exception)
+		 {
+			 
+		       return ResponseEntity.ok(false);
+
+		 }
+			 
+		 
 	 }
 
 	 
